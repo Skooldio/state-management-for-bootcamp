@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { auth, db } from '../firebase'
 import { doc, getDoc, setDoc } from 'firebase/firestore'
 import { signOut } from 'firebase/auth'
 
-import { useAuth } from '../contexts/AuthContext' // Adjust the path as needed
+import { AuthContext } from '../contexts/AuthContext' // Adjust the path as needed
 
 import Loading from '../components/Loading'
 
@@ -15,7 +15,7 @@ function Profile() {
   const [birthdate, setBirthdate] = useState('')
   const [interests, setInterests] = useState([])
   const [loading, setLoading] = useState(true)
-  const { checkingStatus, user } = useAuth()
+  const { checkingStatus, user } = useContext(AuthContext)
 
   useEffect(() => {
     if (!checkingStatus && !user) {

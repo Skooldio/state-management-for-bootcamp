@@ -1,9 +1,9 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useState } from 'react'
 import { auth } from '../firebase' // Ensure this path matches your Firebase configuration file
 import { onAuthStateChanged } from 'firebase/auth'
 
 // Create the context
-const AuthContext = createContext()
+export const AuthContext = createContext()
 
 // Provider component
 export const AuthProvider = ({ children }) => {
@@ -28,5 +28,3 @@ export const AuthProvider = ({ children }) => {
   )
 }
 
-// Custom hook to use the auth context
-export const useAuth = () => useContext(AuthContext)

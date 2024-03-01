@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { auth } from '../firebase'
@@ -6,14 +6,14 @@ import { createUserWithEmailAndPassword } from 'firebase/auth'
 
 import Loading from '../components/Loading'
 
-import { useAuth } from '../contexts/AuthContext.jsx'
+import { AuthContext } from '../contexts/AuthContext.jsx'
 
 function Register() {
   const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
-  const { checkingStatus } = useAuth()
+  const { checkingStatus } = useContext(AuthContext)
 
   const registerUser = async (e) => {
     e.preventDefault()
