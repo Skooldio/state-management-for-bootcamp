@@ -3,7 +3,7 @@ import { auth } from '../firebase' // Ensure this path matches your Firebase con
 import { onAuthStateChanged } from 'firebase/auth'
 
 // Create the context
-const AuthContext = createContext()
+export const AuthContext = createContext()
 
 // Provider component
 export const AuthProvider = ({ children }) => {
@@ -27,6 +27,3 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   )
 }
-
-// Custom hook to use the auth context
-export const useAuth = () => useContext(AuthContext)

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 
 import { auth } from '../firebase' // Adjust the path as necessary
@@ -11,7 +11,7 @@ import {
 import Spinner from '../components/Spinner'
 import Loading from '../components/Loading'
 
-import { useAuth } from '../contexts/AuthContext' // Adjust the path as needed
+import { AuthContext } from '../contexts/AuthContext' // Adjust the path as needed
 
 function Login() {
   const navigate = useNavigate()
@@ -19,7 +19,7 @@ function Login() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false) // Add loading state
-  const { checkingStatus } = useAuth()
+  const { checkingStatus } = useContext(AuthContext)
 
   const loginUser = async (e) => {
     e.preventDefault()
