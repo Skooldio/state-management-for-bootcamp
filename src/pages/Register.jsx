@@ -4,11 +4,16 @@ import { useNavigate } from 'react-router-dom'
 import { auth } from '../firebase'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 
+import Loading from '../components/Loading'
+
+import { useAuth } from '../contexts/AuthContext.jsx'
+
 function Register() {
   const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
+  const { checkingStatus } = useAuth()
 
   const registerUser = async (e) => {
     e.preventDefault()
@@ -24,6 +29,10 @@ function Register() {
     } catch (error) {
       setError(error.message)
     }
+  }
+
+  if (checkingStatus) {
+    return <Loading /> // or your custom loader component
   }
 
   return (

@@ -9,6 +9,9 @@ import {
 } from 'firebase/auth'
 
 import Spinner from '../components/Spinner'
+import Loading from '../components/Loading'
+
+import { useAuth } from '../contexts/AuthContext' // Adjust the path as needed
 
 function Login() {
   const navigate = useNavigate()
@@ -16,6 +19,7 @@ function Login() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false) // Add loading state
+  const { checkingStatus } = useAuth()
 
   const loginUser = async (e) => {
     e.preventDefault()
@@ -40,6 +44,10 @@ function Login() {
       console.error(error)
       alert('Google Sign-In failed. Please try again.')
     }
+  }
+
+  if (checkingStatus) {
+    return <Loading /> // or your custom loader component
   }
 
   return (
